@@ -59,7 +59,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-74.69435264133008,-47.14763690473946],[240.982425070088,138.87617853234622]]);
+        }).fitBounds([[-78.68350859533035,20.541313078105127],[80.0336694659284,99.6140968661272]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -131,6 +131,9 @@
             });
             var popupContent = '<table>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['featurecla'] !== null ? autolinker.link(feature.properties['featurecla'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <th scope="row">type</th>\
                         <td>' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -145,6 +148,9 @@
                     <tr>\
                         <th scope="row">wikipedia</th>\
                         <td>' + (feature.properties['wikipedia'] !== null ? autolinker.link(feature.properties['wikipedia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name_en'] !== null ? autolinker.link(feature.properties['name_en'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">name_es</th>\
@@ -165,6 +171,22 @@
                 pane: 'pane_ne_10m_airports_1',
                 radius: 4.0,
                 opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,229,229,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'major and military':
+                    return {
+                pane: 'pane_ne_10m_airports_1',
+                radius: 0.0002,
+                opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
@@ -172,7 +194,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(193,216,227,1.0)',
+                fillColor: 'rgba(175,209,231,1.0)',
                 interactive: true,
             }
                     break;
@@ -181,6 +203,22 @@
                 pane: 'pane_ne_10m_airports_1',
                 radius: 3.0,
                 opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(162,186,193,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'mid and military':
+                    return {
+                pane: 'pane_ne_10m_airports_1',
+                radius: 0.0002,
+                opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
@@ -188,7 +226,55 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(62,140,218,1.0)',
+                fillColor: 'rgba(175,209,231,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'military':
+                    return {
+                pane: 'pane_ne_10m_airports_1',
+                radius: 0.0002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,190,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'military major':
+                    return {
+                pane: 'pane_ne_10m_airports_1',
+                radius: 0.0002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(96,166,210,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'military mid':
+                    return {
+                pane: 'pane_ne_10m_airports_1',
+                radius: 0.0002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,142,196,1.0)',
                 interactive: true,
             }
                     break;
@@ -197,117 +283,21 @@
                 pane: 'pane_ne_10m_airports_1',
                 radius: 2.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(29,108,177,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NULL':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(53,133,191,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'major and military':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(82,157,204,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'mid and military':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(115,178,216,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'military':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(154,200,224,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'military major':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(186,214,235,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'military mid':
-                    return {
-                pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(209,226,243,1.0)',
+                fillColor: 'rgba(12,29,118,1.0)',
                 interactive: true,
             }
                     break;
                 case 'spaceport':
                     return {
                 pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
+                radius: 0.0002,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -316,14 +306,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(228,239,249,1.0)',
+                fillColor: 'rgba(175,209,231,1.0)',
                 interactive: true,
             }
                     break;
                 default:
                     return {
                 pane: 'pane_ne_10m_airports_1',
-                radius: 1.0,
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -332,7 +322,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,251,255,1.0)',
+                fillColor: 'rgba(8,48,107,1.0)',
                 interactive: true,
             }
                     break;
