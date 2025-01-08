@@ -58,8 +58,8 @@
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-78.68350859533035,20.541313078105127],[80.0336694659284,99.6140968661272]]);
+            zoomControl:false, maxZoom:28, minZoom:2
+        }).fitBounds([[-95.98685079592263,-78.05951052417865],[110.2203430186861,247.41478945161114]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -104,7 +104,7 @@
             pane: 'pane_ESRIGraydark_0',
             opacity: 1.0,
             attribution: '',
-            minZoom: 1,
+            minZoom: 2,
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 20
@@ -178,7 +178,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(229,229,229,1.0)',
+                fillColor: 'rgba(183,219,255,1.0)',
                 interactive: true,
             }
                     break;
@@ -210,7 +210,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(162,186,193,1.0)',
+                fillColor: 'rgba(170,224,239,1.0)',
                 interactive: true,
             }
                     break;
